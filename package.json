@@ -11,7 +11,8 @@
     "/dist"
   ],
   "scripts": {
-    "prepare": "tsc"
+    "prepare": "tsc",
+    "test": "ava"
   },
   "bin": {
     "markup-split": "dist/cli.js"
