@@ -39,11 +39,11 @@ The directives are written in comments, and have the form `markup-split: [PATH]`
 ```asciidoc
 = Introduction
 
-// markup-split: part-1.md
+// markup-split: part-1.adoc
 
 == Part 1
 
-// markup-split: part-2.md
+// markup-split: part-2.adoc
 
 == Part 2
 ```
