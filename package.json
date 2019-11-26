@@ -1,6 +1,6 @@
 {
   "name": "markup-split",
-  "description": "Split a file using commented directives",
+  "description": "Split a file into many parts",
   "version": "0.1.0",
   "author": "Francisco Giordano <frangio.1@gmail.com>",
   "bin": {
