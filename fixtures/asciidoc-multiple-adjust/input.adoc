@@ -1,0 +1,15 @@
+= Title
+
+Description.
+
+// markup-split: output-1.adoc
+
+== Subsection 1
+
+Content.
+
+// markup-split: output-2.adoc
+
+== Subsection 2
+
+Content.

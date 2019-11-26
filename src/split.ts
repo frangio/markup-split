@@ -8,6 +8,7 @@ export async function split(
   force: boolean,
   adjust: boolean,
 ): Promise<void> {
+  const root = path.dirname(file);
   const source = await fs.readFile(file, 'utf8');
 
   const ext = path.extname(file);
@@ -22,12 +23,13 @@ export async function split(
   const flag = force ? 'w' : 'wx';
 
   await Promise.all(chunks.map(async c => {
-    await fs.mkdir(path.dirname(c.path), { recursive: true });
+    const fullPath = path.join(root, c.path);
+    await fs.mkdir(path.dirname(fullPath), { recursive: true });
     try {
-      await fs.writeFile(c.path, c.content, { flag });
+      await fs.writeFile(fullPath, c.content, { flag });
     } catch (e) {
       if (e.code === 'EEXIST') {
-        throw new Error(`File '${c.path}' already exists. Use --force flag.`);
+        throw new Error(`File '${fullPath}' already exists. Use --force flag.`);
       }
     }
   }));
