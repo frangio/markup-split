@@ -21,7 +21,7 @@ export function *asciidoc(source: string, adjust: boolean): Generator<Chunk, voi
 
 export function *markdown(source: string, adjust: boolean): Generator<Chunk, void> {
   const syntax = {
-    directive: /^<!--\s*markup-split:\s*(?<path>.+)\s*-->$/m,
+    directive: /^<!--\s*markup-split:\s*(?<path>.+?)\s*-->$/m,
     heading: /^#(?=#+)/gm,
   };
 
