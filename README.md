@@ -1,4 +1,4 @@
-# markup-split
+# markup-split ✂️
 
 **Split a file into many parts.**
 
