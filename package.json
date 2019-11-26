@@ -3,10 +3,19 @@
   "description": "Split a file into many parts",
   "version": "0.1.0",
   "author": "Francisco Giordano <frangio.1@gmail.com>",
+  "repository": "github:frangio/markup-split",
+  "bugs": "https://github.com/frangio/markup-split/issues",
+  "homepage": "https://github.com/frangio/markup-split",
+  "main": "dist/parse.js",
+  "files": [
+    "/dist"
+  ],
+  "scripts": {
+    "prepare": "tsc"
+  },
   "bin": {
     "markup-split": "dist/cli.js"
   },
-  "bugs": "https://github.com/frangio/markup-split/issues",
   "dependencies": {
     "@oclif/command": "^1.5.19",
     "@oclif/config": "^1.13.3",
@@ -23,14 +32,5 @@
     "ava": "^2.4.0",
     "typescript": "^3.7.2"
   },
-  "files": [
-    "/dist"
-  ],
-  "homepage": "https://github.com/frangio/markup-split",
-  "license": "MIT",
-  "main": "dist/parse.js",
-  "repository": "github:frangio/markup-split",
-  "scripts": {
-    "prepare": "tsc"
-  }
+  "license": "MIT"
 }
