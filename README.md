@@ -5,7 +5,7 @@
 ## Usage
 
 ```
-markup-split [--force|-f] [FILE...]
+markup-split [--force|-f] [--no-adjust|-A] [FILE...]
 ```
 
 The supported file formats are AsciiDoc (`*.adoc`) and Markdown (`*.md`).
@@ -13,6 +13,8 @@ The supported file formats are AsciiDoc (`*.adoc`) and Markdown (`*.md`).
 The input files will be scanned for `markup-split` directives (see Syntax below), and the contents that follow each directive will be copied to new files at the specified paths.
 
 Use `--force` to overwrite existing files.
+
+Use `--no-adjust` to disable decrementing heading levels.
 
 ## Syntax
 

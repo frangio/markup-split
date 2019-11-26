@@ -10,25 +10,30 @@ interface Syntax {
 
 export type Parser = typeof asciidoc;
 
-export function *asciidoc(source: string): Generator<Chunk, void> {
+export function *asciidoc(source: string, adjust: boolean): Generator<Chunk, void> {
   const syntax = {
     directive: /^\/\/\s*markup-split:\s*(?<path>.+)$/m,
     heading: /^=(?==+)/gm,
   };
 
-  yield* parse(syntax, source);
+  yield* parse(syntax, source, adjust);
 }
 
-export function *markdown(source: string): Generator<Chunk, void> {
+export function *markdown(source: string, adjust: boolean): Generator<Chunk, void> {
   const syntax = {
     directive: /^<!--\s*markup-split:\s*(?<path>.+)\s*-->$/m,
     heading: /^#(?=#+)/gm,
   };
 
-  yield* parse(syntax, source);
+  yield* parse(syntax, source, adjust);
 }
 
-function *parse(syntax: Syntax, source: string): Generator<Chunk, void> {
+function *parse(
+  syntax: Syntax,
+  source: string,
+  adjust: boolean,
+): Generator<Chunk, void> {
+
   const scanner = new Scanner(source);
 
   const directives = [...scanner.scan(syntax.directive)];
@@ -36,10 +41,12 @@ function *parse(syntax: Syntax, source: string): Generator<Chunk, void> {
   for (const [i, d] of directives.entries()) {
     const { path } = d.groups!;
 
-    const content = source.slice(
+    const raw = source.slice(
       d.index + d[0].length + 1,
       directives[i+1]?.index ?? source.length,
-    ).replace(syntax.heading, '');
+    );
+
+    const content = adjust ? raw.replace(syntax.heading, '') : raw;
 
     yield { path, content };
   }

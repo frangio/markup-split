@@ -3,7 +3,11 @@ import path from 'path';
 
 import * as parse from './parse';
 
-export async function split(file: string, force: boolean): Promise<void> {
+export async function split(
+  file: string,
+  force: boolean,
+  adjust: boolean,
+): Promise<void> {
   const source = await fs.readFile(file, 'utf8');
 
   const ext = path.extname(file);
@@ -13,7 +17,7 @@ export async function split(file: string, force: boolean): Promise<void> {
     throw new Error(`Extension ${ext} is not supported`);
   }
 
-  const chunks = [...parser(source)];
+  const chunks = [...parser(source, adjust)];
 
   const flag = force ? 'w' : 'wx';
 
